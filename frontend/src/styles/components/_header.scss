@@ -1,0 +1,110 @@
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 2rem 0;
+  
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  &__logo {
+    font-family: $heading-font;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: $primary-color;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    a {
+      color: inherit;
+      
+      &:hover {
+        color: inherit;
+      }
+    }
+  }
+  
+  &__nav {
+    @media (max-width: $breakpoint-md) {
+      display: none;
+      
+      &.active {
+        display: block;
+        position: fixed;
+        top: 8rem;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 8rem);
+        background-color: white;
+        padding: 2rem;
+        
+        ul {
+          flex-direction: column;
+          align-items: center;
+          
+          li {
+            margin: 1.5rem 0;
+          }
+        }
+      }
+    }
+    
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    li {
+      margin-left: 3rem;
+      
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+    
+    a {
+      font-size: 1.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: $accent-color;
+        transition: width 0.3s ease;
+      }
+      
+      &:hover::after,
+      &.active::after {
+        width: 100%;
+      }
+    }
+  }
+  
+  &__toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2.4rem;
+    
+    @media (max-width: $breakpoint-md) {
+      display: block;
+    }
+  }
+} 
