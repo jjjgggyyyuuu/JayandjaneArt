@@ -27,8 +27,28 @@ const limiter = rateLimit({
 });
 app.use('/api/', limiter);
 
+// CORS Configuration - Updated for production
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://jayandjane.com',
+  'https://www.jayandjane.com'
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
+}));
+
 // Middleware
-app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(compression());

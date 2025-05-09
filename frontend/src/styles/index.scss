@@ -299,10 +299,13 @@ textarea.form-control {
 @import './components/gallery';
 @import './components/artwork';
 @import './components/modal';
-@import './components/filters';
+// @import './components/filters';
 
 // Import page styles
 @import './pages/home';
 @import './pages/about';
 @import './pages/contact';
-@import './pages/not-found'; 
+@import './pages/not-found';
+
+// Import admin specific styles
+@import 'components/admin'; 
